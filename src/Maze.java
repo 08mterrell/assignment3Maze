@@ -11,43 +11,37 @@ public class Maze {
     }
 
     public void escape(int row, int col) {
-        boolean istrue = true;
         boolean isTrue = true;
-        while (isTrue) {
+
+        if (isTrue) {
             Scanner in = new Scanner(System.in);
             int cont = in.nextInt();
+            boolean downEmpty = (row + 1) <= 8 && Character.compare(m[row + 1][col], ' ') == 0;
+            boolean upEmpty = (row - 1) >= 0 && Character.compare(m[row - 1][col], ' ') == 0;
+            boolean rightEmpty = Character.compare(m[row][col + 1], ' ') == 0;
+            boolean leftEmpty = Character.compare(m[row][col - 1], ' ') == 0;
+            boolean currentEmpty = Character.compare(m[row][col], ' ') == 0;
 
-
-
-            if (Character.compare(m[row][col], '*') != 0) { // check if current position is empty space
+            if (currentEmpty) { // check if current position is empty space
                 m[row][col] = '+';
-                if (Character.compare(m[row + 1][col], '*') != 0) { //check down for empty space
+                if(downEmpty) {
                     row += 1;
-                    m[row][col] = '+';
-                } else if (Character.compare(m[row + 1][col], '+') != 0) { //deletes "+" if down is full
-                    row -= 1;
-                    m[row][col] = ' ';
-                }
-                if (Character.compare(m[row][col + 1], '*') != 0) { // check to right for empty space
+                    System.out.println("row: " + row + "col: " + col);
+                } else if(rightEmpty) {
                     col += 1;
-                    m[row][col] = '+';
-                } else if (Character.compare(m[row][col + 1], '+') != 0) { //deletes "+" if right is full
+                    System.out.println("row: " + row + "col: " + col);
+                } else if(leftEmpty) {
                     col -= 1;
-                    m[row][col] = ' ';
-                }
-                if (Character.compare(m[row][col - 1], '*') != 0) { // checks to the left for empty space
-                    col -= 1;
-                    m[row][col] = '+';
-                }
-                if (Character.compare(m[row - 1][col], '*') != 0 && row >= 0) { // checks up for empty space
+                    System.out.println("row: " + row + "col: " + col);
+                } else if(upEmpty) {
                     row -= 1;
-                    m[row][col] = '+';
+                    System.out.println("row: " + row + "col: " + col);
                 }
-                if (cont == 2) {
-                    isTrue = false;
-                }
-
             }
+            if (cont == 2 || row > 8) {
+                isTrue = false;
+            }
+            escape(0, 1);
         }
     }
 }
