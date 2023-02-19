@@ -11,13 +11,9 @@ public class Maze {
     }
 
     public void escape(int row, int col) {
-        boolean isTrue = true;
-
-        if (row == 8)
+        if (row >= 8)
             return;
-
-
-        boolean downEmpty = (row + 1) <= 8 && Character.compare(m[row + 1][col], ' ') == 0;
+        boolean downEmpty = (row + 1) < 9 && Character.compare(m[row + 1][col], ' ') == 0;
         boolean upEmpty = (row - 1) >= 0 && Character.compare(m[row - 1][col], ' ') == 0;
         boolean rightEmpty = Character.compare(m[row][col + 1], ' ') == 0;
         boolean leftEmpty = Character.compare(m[row][col - 1], ' ') == 0;
