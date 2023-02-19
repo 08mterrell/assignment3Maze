@@ -9,34 +9,53 @@ public class Maze {
     }
 
     public void escape(int row, int col) {
-        int right = col + 1;
-        int left = col - 1;
-        int up = row - 1;
-        int down = row + 1;
+
 
         boolean rightEmpty = true;
         boolean leftEmpty = true;
         boolean upEmpty = true;
         boolean downEmpty = true;
-        System.out.println(up);
-        if (down <= 8) {
-            if (Character.compare(m[down][col], '*')) {
-                downEmpty = false;
+
+        boolean end = false;
+        if(!end) {
+            if (row <= 8) {
+                if (Character.compare(m[row][col], '*') == 0) {
+                    downEmpty = false;
+                }
             }
-        }
-        if (up >= 0 && m[up][col] == '*') {
-            upEmpty = false;
-        }
-        if (left <= 7 && m[down][col] == '*') {
-            leftEmpty = false;
-        }
-        if (down <= 7 && m[down][col] == '*') {
-            downEmpty = false;
+            if (row >= 0) {
+                if (Character.compare(m[row][col], '*') == 0) {
+                    upEmpty = false;
+                }
+            }
+            if (col >= 0) {
+                if (Character.compare(m[row][col], '*') == 0) {
+                    leftEmpty = false;
+                }
+            }
+            if (col <= 8) {
+                if (Character.compare(m[row][col], '*') == 0) {
+                    rightEmpty = false;
+                }
+            }
+
+            if (downEmpty) {
+                m[row][col] = '+';
+                row += 1;
+            }
+            if (rightEmpty) {
+                m[row][col] = '+';
+                col += 1;
+            }
+            if (row == 8) {
+                end = true;
+            }
+            else {
+                return;
+            }
+            escape(row, col);
         }
 
-        if (downEmpty) {
-            m[down][col] = '+';
-        }
 
         System.out.print(downEmpty);
 
