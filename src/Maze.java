@@ -18,13 +18,24 @@ public class Maze {
         boolean leftEmpty = true;
         boolean upEmpty = true;
         boolean downEmpty = true;
-
-        if (down <= 8 && m[row][col] == '*') {
+        System.out.println(up);
+        if (down <= 8) {
+            if (Character.compare(m[down][col], '*')) {
+                downEmpty = false;
+            }
+        }
+        if (up >= 0 && m[up][col] == '*') {
+            upEmpty = false;
+        }
+        if (left <= 7 && m[down][col] == '*') {
+            leftEmpty = false;
+        }
+        if (down <= 7 && m[down][col] == '*') {
             downEmpty = false;
         }
 
         if (downEmpty) {
-            m[row][col] = '+';
+            m[down][col] = '+';
         }
 
         System.out.print(downEmpty);

@@ -13,7 +13,7 @@ public class MazeDemo
                 {'*', ' ', ' ', ' ', ' ', ' ', '*', ' ', '*'},
                 {'*', '*', '*', '*', '*', '*', '*', ' ', '*'}};
         Maze maze = new Maze(m);
-        maze.escape(8, 1);
+        maze.escape(7, 1);
         System.out.println("The path from the starting point to the exit is drawn with \"+\" below:");
         for (int i = 0; i < maze.height; i++) {
             for (int j = 0; j < maze.width; j++) {
